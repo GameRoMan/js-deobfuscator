@@ -8,8 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "typecheck": "nuxi typecheck",
-    "release": "bumpp && tsx scripts/release.ts",
-    "postinstall": "nuxt prepare"
+    "release": "bumpp && tsx scripts/release.ts"
   },
   "dependencies": {
     "deob": "workspace:*",
