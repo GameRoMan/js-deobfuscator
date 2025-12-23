@@ -34,8 +34,6 @@ The example directory contains some examples of obfuscated code I've encountered
 │ ├── errorCode.js # Outputs error codes to this file when code replacement causes syntax errors
 ```
 
-Since the project is developed using TypeScript and uses esmodules, it is recommended to use [tsx](https://github.com/privatenumber/tsx) to execute index.ts.
-
 ## Usage Documentation
 
 There are several key pieces of code for obfuscation and restoration:
