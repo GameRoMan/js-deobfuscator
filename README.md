@@ -20,8 +20,6 @@ cd js-deobfuscator
 pnpm i
 ```
 
-The code to be deobfuscated is located in tmp/input.js. Executing `pnpm run tmp` will output the deobfuscated code in tmp/output.js.
-
 The example directory contains some examples of obfuscated code I've encountered and configuration options. The structure of each subdirectory is as follows:
 
 ```
