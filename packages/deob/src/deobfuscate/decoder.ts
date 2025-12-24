@@ -62,6 +62,7 @@ export class Decoder {
       if (conditionalCall.match(ref.parent)) {
         // decode(test ? 1 : 2) -> test ? decode(1) : decode(2)
         const [replacement] = ref.parentPath!.replaceWith(
+          // @ts-expect-error TODO FIX
           buildExtractedConditional({
             TEST: conditional.current!.test,
             CALLEE: ref.parent.callee,

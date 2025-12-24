@@ -19,6 +19,7 @@ export default {
           const expression = path.node.expression as t.LogicalExpression;
           if (andMatcher.match(path.node)) {
             path.replaceWith(
+              // @ts-expect-error TODO FIX
               buildIf({
                 TEST: expression.left,
                 BODY: expression.right,
@@ -27,6 +28,7 @@ export default {
             this.changes++;
           } else if (orMatcher.match(path.node)) {
             path.replaceWith(
+              // @ts-expect-error TODO FIX
               buildIfNot({
                 TEST: expression.left,
                 BODY: expression.right,

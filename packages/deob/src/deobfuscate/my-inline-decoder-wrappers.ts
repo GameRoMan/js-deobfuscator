@@ -53,21 +53,21 @@ export default {
 
         // 遍历 _0x49afe4(-57, 1080, 828, 469)
         binding.referencePaths.forEach((ref) => {
-          // 通过引用找到调用混淆函数的,需要拿到实际传入的参数
+          // To find the caller of the obfuscated function, you need to obtain the actual parameters passed in.
           if (
             ref.parentKey === "callee" &&
             ref.parentPath?.isCallExpression()
           ) {
-            // 调用传入参数 -57, 1080, 828, 469
+            // The call was performed with the following parameters: -57, 1080, 828, 469.
             const callFn_args = ref.parentPath.node.arguments;
 
-            // 实际用到的参数 _0x13ee81 - -674, _0x3dfa50
+            // The actual parameters used are _0x13ee81 - -674, _0x3dfa50
             const realFn_args = realFn.node.arguments;
 
-            // 要替换的模版
+            // Template to be replaced
             let templateCode = generate(realFn.node);
 
-            // 记录后续模版中要替换的标识符
+            // Record the identifiers to be replaced in subsequent templates.
             const replaceIdentifiers: Record<string, any> = {};
 
             // 遍历 (_0x254ae1, _0x559602, _0x3dfa50, _0x13ee81)
@@ -96,6 +96,7 @@ export default {
             const callFnName = (realFnCallee.node as t.Identifier).name;
 
             if (callFnName && newCallExpression)
+              // @ts-expect-error TODO FIX
               ref.parentPath.replaceWith(newCallExpression);
           }
         });

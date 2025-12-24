@@ -19,6 +19,7 @@ export default {
         exit(path) {
           if (conditional.match(path.node.expression)) {
             path.replaceWith(
+              // @ts-expect-error TODO FIX
               buildIf({
                 TEST: test.current,
                 CONSEQUENT: consequent.current,
@@ -33,6 +34,7 @@ export default {
         exit(path) {
           if (conditional.match(path.node.argument)) {
             path.replaceWith(
+              // @ts-expect-error TODO FIX
               buildIfReturn({
                 TEST: test.current,
                 CONSEQUENT: consequent.current,
