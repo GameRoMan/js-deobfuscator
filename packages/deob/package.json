@@ -37,7 +37,7 @@
     "@types/debug": "^4.1.12",
     "@types/node": "^20.19.27",
     "@webcrack/typescript-config": "workspace:*",
-    "esbuild": "^0.19.12",
+    "esbuild": "^0.27.2",
     "typescript": "^5.9.3"
   }
 }
