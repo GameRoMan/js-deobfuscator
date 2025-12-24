@@ -38,6 +38,6 @@
     "@types/node": "^20.19.27",
     "@webcrack/typescript-config": "workspace:*",
     "esbuild": "^0.19.12",
-    "typescript": "^5.3.2"
+    "typescript": "^5.9.3"
   }
 }
