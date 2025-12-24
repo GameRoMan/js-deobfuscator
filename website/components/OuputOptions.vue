@@ -31,7 +31,7 @@ watchEffect(() => {
     <button class="i-ri:settings-line" @click="openDialog" />
     <dialog ref="dialog" min-h-130 rounded p0 @click="handleDialogClick">
       <div py2 text-center text-lg font-bold>
-        反混淆配置
+        Deobfuscation Configuration
         <button
           class="i-ri:close-line"
           float-right
@@ -43,22 +43,22 @@ watchEffect(() => {
 
       <div px-4 py-2 w-40vw>
         <div flex="~ col gap-2" text-base w-full>
-          <div class="border-b border-gray-200 text-lg">解密配置</div>
+          <div class="border-b border-gray-200 text-lg">Decrypt configuration</div>
           <label class="inline-flex items-center gap-2">
             <div class="flex-1">
-              <span mr-2>解密器定位方式</span>
+              <span mr-2>Decoder location method</span>
               <select
                 v-model="options.decoderLocationMethod"
                 class="pl-0.5 border border-gray-300 bg-white shadow-sm focus:(outline-none ring) dark:bg-gray-700"
               >
-                <option value="stringArray">字符串数组长度</option>
-                <option value="callCount">解密器调用次数</option>
-                <option value="evalCode">注入解密代码</option>
+                <option value="stringArray">String Array</option>
+                <option value="callCount">Call count</option>
+                <option value="evalCode">Eval code</option>
               </select>
             </div>
 
             <div v-if="options.decoderLocationMethod === 'callCount'">
-              调用次数
+              Number of calls
               <input
                 v-model="options.decoderCallCount"
                 class="pl-0.5 border border-gray-300 bg-white shadow-sm focus:(outline-none ring) dark:bg-gray-700"
@@ -70,7 +70,7 @@ watchEffect(() => {
             </div>
 
             <div v-if="options.decoderLocationMethod === 'stringArray'">
-              字符串数组长度
+              Length of string array
               <input
                 v-model="options.stringArraylength"
                 class="pl-0.5 border border-gray-300 bg-white shadow-sm focus:(outline-none ring) dark:bg-gray-700"
@@ -84,7 +84,7 @@ watchEffect(() => {
               v-if="options.decoderLocationMethod === 'evalCode'"
               class="inline-flex items-center gap-2"
             >
-              <span>指定解密器(函数名)</span>
+              <span>Specify the decryptor (function name)</span>
               <input
                 v-model="options.designDecoderName"
                 class="pl-0.5 border border-gray-300 bg-white shadow-sm focus:(outline-none ring) dark:bg-gray-700"
@@ -102,7 +102,7 @@ watchEffect(() => {
           />
 
           <label class="inline-flex items-center gap-2">
-            <span class="flex-1">解密器嵌套函数深度</span>
+            <span class="flex-1">Decryptor nesting function depth</span>
             <input
               v-model="options.inlineWrappersDepth"
               class="pl-0.5 border border-gray-300 bg-white shadow-sm focus:(outline-none ring) dark:bg-gray-700"
@@ -113,7 +113,7 @@ watchEffect(() => {
             />
           </label>
           <label class="inline-flex items-center gap-2">
-            <span class="flex-1">混淆花指令还原执行次数</span>
+            <span class="flex-1">Obfuscated junk instructions restore execution count</span>
             <input
               v-model="options.execCount"
               class="pl-0.5 border border-gray-300 bg-white shadow-sm focus:(outline-none ring) dark:(bg-gray-700 disabled-bg-gray-900) disabled:bg-gray-100"
@@ -125,30 +125,30 @@ watchEffect(() => {
             />
           </label>
           <label class="inline-flex items-center gap-2">
-            <span class="flex-1">是否移除解密器(后续用不到)</span>
-            <input v-model="options. isRemoveDecoder" type="checkbox" />
+            <span class="flex-1">Remove the decryptor (it won't be needed later).</span>
+            <input v-model="options.isRemoveDecoder" type="checkbox" />
           </label>
           <label class="inline-flex items-center gap-2">
-            <span class="flex-1">强力清除(会对处理后的代码再次执行)</span>
+            <span class="flex-1">Forceful cleanup (will re-execute the processed code)</span>
             <input v-model="options.isStrongRemove" type="checkbox" />
           </label>
 
-          <div class="border-b border-gray-200 text-lg mt-2">输出配置</div>
+          <div class="border-b border-gray-200 text-lg mt-2">Output configuration</div>
           <label class="inline-flex items-center gap-2">
-            <span class="flex-1">是否压缩代码 (将不会有任何注释)</span>
+            <span class="flex-1">Minify the code</span>
             <input v-model="options.isMinifiedEnable" type="checkbox" />
           </label>
 
           <label class="inline-flex items-center gap-2">
-            <span class="flex-1">是否优化变量名</span>
+            <span class="flex-1">Mangle variable names</span>
             <input v-model="options.mangle" type="checkbox" />
           </label>
           <label class="inline-flex items-center gap-2">
-            <span class="flex-1">是否标记关键标识符</span>
+            <span class="flex-1">Whether to mark key identifiers</span>
             <input v-model="options.isMarkEnable" type="checkbox" />
           </label>
           <label class="inline-flex items-center gap-2">
-            <span class="flex-1">标识符</span>
+            <span class="flex-1">identifier</span>
             <input
               v-model="keywordsValue"
               class="pl-0.5 border border-gray-300 bg-white shadow-sm focus:(outline-none ring) dark:(bg-gray-700 disabled-bg-gray-900) disabled:bg-gray-100"

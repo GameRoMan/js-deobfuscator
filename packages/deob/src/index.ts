@@ -72,10 +72,10 @@ const logger = debug("Deob");
 
 export function evalCode(code: string) {
   try {
-    const result = global.eval(code);
+    global.eval(code);
   } catch (error) {
     logger(`eval code:\n${code}`);
-    throw new Error("evalCode 无法运行, 请在控制台中查看错误信息");
+    throw new Error("The evalCode function failed to run. Please check the error message in the console.");
   }
 }
 
@@ -93,16 +93,16 @@ export class Deob {
     // debug.enable('webcrack:*')
     debug.enable("Deob");
 
-    if (!rawCode) throw new Error("请载入js代码");
+    if (!rawCode) throw new Error("Please load the JavaScript code.");
     console.clear();
 
     try {
       this.ast = parser.parse(rawCode, { sourceType: "script" });
     } catch (error) {
-      console.error("代码初始化解析有误!");
+      console.error("The code initialization parsing is incorrect!");
 
       handleError(error, rawCode);
-      throw new Error(`代码初始化解析有误! ${error}`);
+      throw new Error(`The code initialization parsing is incorrect! ${error}`);
     }
   }
 
@@ -112,7 +112,7 @@ export class Deob {
   }
 
   /**
-   * 当执行替换(replace,rename等)操作时,需要执行一次更新以获取最新状态 ast
+   * When performing a replacement (replace, rename, etc.) operation, an update is required to obtain the latest state.
    */
   reParse() {
     const jscode = generate(this.ast, {
@@ -126,7 +126,7 @@ export class Deob {
       this.ast = parser.parse(jscode);
     } catch (error) {
       handleError(error, jscode);
-      throw new Error(`代码替换有误,解析失败! 请到控制台中查看 ${error}`);
+      throw new Error(`Code replacement error, parsing failed! Please check the console. ${error}`);
     }
   }
 
