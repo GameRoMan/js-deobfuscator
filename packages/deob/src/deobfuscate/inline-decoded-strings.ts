@@ -1,4 +1,5 @@
 import * as t from "@babel/types";
+
 import type { AsyncTransform } from "../ast-utils";
 import type { VMDecoder } from "./vm";
 

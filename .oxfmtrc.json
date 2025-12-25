@@ -1,4 +1,5 @@
 {
   "printWidth": 80,
-  "ignorePatterns": ["example/**", "website/.output/**"]
+  "ignorePatterns": ["example/**", "website/.output/**"],
+  "experimentalSortImports": {}
 }

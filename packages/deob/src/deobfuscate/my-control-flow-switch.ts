@@ -1,6 +1,9 @@
-import * as t from "@babel/types";
 import type { NodePath } from "@babel/traverse";
+
+import * as t from "@babel/types";
+
 import type { Transform } from "../ast-utils";
+
 import { getPropName } from "../ast-utils";
 
 /**

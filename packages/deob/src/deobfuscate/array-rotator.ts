@@ -1,9 +1,12 @@
 import type { NodePath } from "@babel/traverse";
 import type * as t from "@babel/types";
+
 import * as m from "@codemod/matchers";
 import { callExpression } from "@codemod/matchers";
-import { constMemberExpression, findParent, infiniteLoop } from "../ast-utils";
+
 import type { StringArray } from "./string-array";
+
+import { constMemberExpression, findParent, infiniteLoop } from "../ast-utils";
 
 export type ArrayRotator = NodePath<t.ExpressionStatement>;
 

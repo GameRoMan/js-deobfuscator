@@ -1,6 +1,7 @@
 import { parse } from "@babel/parser";
 import traverse from "@babel/traverse";
 import { describe, expect, test } from "vitest";
+
 import {
   generate,
   inlineFunctionAliases,

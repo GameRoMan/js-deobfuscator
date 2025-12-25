@@ -1,6 +1,5 @@
-import type * as Babel from "@babel/parser";
-
 import type { JsonNode, Range } from "#imports";
+import type * as Babel from "@babel/parser";
 
 export interface Parser<C = unknown, O = unknown> {
   id: string;

@@ -1,8 +1,9 @@
 import traverse, { Binding, NodePath } from "@babel/traverse";
 import * as t from "@babel/types";
 import * as m from "@codemod/matchers";
-import { findParent } from "./matcher";
+
 import { getPropName } from ".";
+import { findParent } from "./matcher";
 
 /**
  * Replace all references of a variable with the initializer.

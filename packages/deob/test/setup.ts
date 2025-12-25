@@ -1,5 +1,6 @@
 import * as t from "@babel/types";
 import { expect } from "vitest";
+
 import { generate } from "../src/ast-utils";
 
 expect.addSnapshotSerializer({

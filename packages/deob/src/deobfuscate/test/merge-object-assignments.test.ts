@@ -1,4 +1,5 @@
 import { test } from "vitest";
+
 import { testTransform } from "../../../test";
 import mergeObjectAssignments from "../merge-object-assignments";
 

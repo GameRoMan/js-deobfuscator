@@ -43,7 +43,9 @@ watchEffect(() => {
 
       <div px-4 py-2 w-40vw>
         <div flex="~ col gap-2" text-base w-full>
-          <div class="border-b border-gray-200 text-lg">Decrypt configuration</div>
+          <div class="border-b border-gray-200 text-lg">
+            Decrypt configuration
+          </div>
           <label class="inline-flex items-center gap-2">
             <div class="flex-1">
               <span mr-2>Decoder location method</span>
@@ -113,7 +115,9 @@ watchEffect(() => {
             />
           </label>
           <label class="inline-flex items-center gap-2">
-            <span class="flex-1">Obfuscated junk instructions restore execution count</span>
+            <span class="flex-1"
+              >Obfuscated junk instructions restore execution count</span
+            >
             <input
               v-model="options.execCount"
               class="pl-0.5 border border-gray-300 bg-white shadow-sm focus:(outline-none ring) dark:(bg-gray-700 disabled-bg-gray-900) disabled:bg-gray-100"
@@ -125,15 +129,21 @@ watchEffect(() => {
             />
           </label>
           <label class="inline-flex items-center gap-2">
-            <span class="flex-1">Remove the decryptor (it won't be needed later).</span>
+            <span class="flex-1"
+              >Remove the decryptor (it won't be needed later).</span
+            >
             <input v-model="options.isRemoveDecoder" type="checkbox" />
           </label>
           <label class="inline-flex items-center gap-2">
-            <span class="flex-1">Forceful cleanup (will re-execute the processed code)</span>
+            <span class="flex-1"
+              >Forceful cleanup (will re-execute the processed code)</span
+            >
             <input v-model="options.isStrongRemove" type="checkbox" />
           </label>
 
-          <div class="border-b border-gray-200 text-lg mt-2">Output configuration</div>
+          <div class="border-b border-gray-200 text-lg mt-2">
+            Output configuration
+          </div>
           <label class="inline-flex items-center gap-2">
             <span class="flex-1">Minify the code</span>
             <input v-model="options.isMinifiedEnable" type="checkbox" />

@@ -1,6 +1,7 @@
 import { parse } from "@babel/parser";
 import traverse from "@babel/traverse";
 import { describe, expect, it } from "vitest";
+
 import { renameFast, renameParameters } from "../src/ast-utils/rename";
 
 describe("rename variable", () => {

@@ -1,6 +1,8 @@
 import type { NodePath } from "@babel/traverse";
-import * as t from "@babel/types";
+
 import traverse from "@babel/traverse";
+import * as t from "@babel/types";
+
 import { getPropName } from "../ast-utils";
 
 export type Objects = Record<`${string}_${string}`, t.ObjectExpression>;

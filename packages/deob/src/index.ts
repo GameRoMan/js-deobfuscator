@@ -1,29 +1,38 @@
-import { join, normalize } from "node:path";
-import * as parser from "@babel/parser";
-import { codeFrameColumns } from "@babel/code-frame";
 import type * as t from "@babel/types";
+
+import { codeFrameColumns } from "@babel/code-frame";
+import * as parser from "@babel/parser";
 import debug from "debug";
+import { join, normalize } from "node:path";
+
+import type { ArrayRotator } from "./deobfuscate/array-rotator";
+import type { Decoder } from "./deobfuscate/decoder";
+import type { StringArray } from "./deobfuscate/string-array";
+import type { Options } from "./options";
+
 import {
   applyTransform,
   applyTransforms,
   codePrettier,
   generate,
 } from "./ast-utils";
-import type { Options } from "./options";
-import { defaultOptions, mergeOptions } from "./options";
-import type { StringArray } from "./deobfuscate/string-array";
-import type { Decoder } from "./deobfuscate/decoder";
-import type { ArrayRotator } from "./deobfuscate/array-rotator";
-import inlineDecoderWrappers from "./deobfuscate/inline-decoder-wrappers";
-import inlineObjectProps from "./deobfuscate/inline-object-props";
-import deadCode from "./deobfuscate/dead-code";
 import controlFlowObject from "./deobfuscate/control-flow-object";
 import controlFlowSwitch from "./deobfuscate/control-flow-switch";
-import mergeObjectAssignments from "./deobfuscate/merge-object-assignments";
-import varFunctions from "./deobfuscate/var-functions";
+import deadCode from "./deobfuscate/dead-code";
 import debugProtection from "./deobfuscate/debug-protection";
+import inlineDecoderWrappers from "./deobfuscate/inline-decoder-wrappers";
+import inlineObjectProps from "./deobfuscate/inline-object-props";
+import mergeObjectAssignments from "./deobfuscate/merge-object-assignments";
 import selfDefending from "./deobfuscate/self-defending";
-
+import varFunctions from "./deobfuscate/var-functions";
+import { defaultOptions, mergeOptions } from "./options";
+import { decodeStrings } from "./transforms/decode-strings";
+import { designDecoder } from "./transforms/design-decoder";
+import { findDecoderByArray } from "./transforms/find-decoder-by-array";
+import { findDecoderByCallCount } from "./transforms/find-decoder-by-call-count";
+import mangle from "./transforms/mangle";
+import { markKeyword } from "./transforms/mark-keyword";
+import { unminify } from "./unminify";
 import {
   blockStatements,
   mergeStrings,
@@ -31,14 +40,6 @@ import {
   sequence,
   splitVariableDeclarations,
 } from "./unminify/transforms";
-import { unminify } from "./unminify";
-
-import { findDecoderByArray } from "./transforms/find-decoder-by-array";
-import { findDecoderByCallCount } from "./transforms/find-decoder-by-call-count";
-import { designDecoder } from "./transforms/design-decoder";
-import { decodeStrings } from "./transforms/decode-strings";
-import { markKeyword } from "./transforms/mark-keyword";
-import mangle from "./transforms/mangle";
 
 export { type Options, defaultOptions, codePrettier, parser, generate };
 
@@ -75,7 +76,9 @@ export function evalCode(code: string) {
     global.eval(code);
   } catch (error) {
     logger(`eval code:\n${code}`);
-    throw new Error("The evalCode function failed to run. Please check the error message in the console.");
+    throw new Error(
+      "The evalCode function failed to run. Please check the error message in the console.",
+    );
   }
 }
 
@@ -126,7 +129,9 @@ export class Deob {
       this.ast = parser.parse(jscode);
     } catch (error) {
       handleError(error, jscode);
-      throw new Error(`Code replacement error, parsing failed! Please check the console. ${error}`);
+      throw new Error(
+        `Code replacement error, parsing failed! Please check the console. ${error}`,
+      );
     }
   }
 
@@ -265,7 +270,9 @@ export class Deob {
           historys.push(parser.parse(jscode));
         } catch (error) {
           handleError(error, jscode);
-          throw new Error(`Code replacement error, parsing failed! Please check the console. ${error}`);
+          throw new Error(
+            `Code replacement error, parsing failed! Please check the console. ${error}`,
+          );
         }
       }
     }

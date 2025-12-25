@@ -1,8 +1,9 @@
 import type { NodePath } from "@babel/traverse";
 import type * as t from "@babel/types";
-import { expression } from "@babel/template";
-import { type Transform, generate } from "../ast-utils";
 
+import { expression } from "@babel/template";
+
+import { type Transform, generate } from "../ast-utils";
 import { Decoder } from "./decoder";
 
 /**

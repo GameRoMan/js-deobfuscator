@@ -1,5 +1,8 @@
 import debug from "debug";
+
 import type { AsyncTransform } from "../ast-utils";
+import type { Sandbox } from "./vm";
+
 import {
   applyTransform,
   applyTransformAsync,
@@ -15,7 +18,6 @@ import inlineDecodedStrings from "./inline-decoded-strings";
 import inlineDecoderWrappers from "./inline-decoder-wrappers";
 import inlineObjectProps from "./inline-object-props";
 import { findStringArray } from "./string-array";
-import type { Sandbox } from "./vm";
 import { VMDecoder, createBrowserSandbox, createNodeSandbox } from "./vm";
 
 export { createBrowserSandbox, createNodeSandbox, type Sandbox };
