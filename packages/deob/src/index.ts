@@ -153,9 +153,9 @@ export class Deob {
     const options = this.options;
 
     const stages = [
-      /** 格式预处理 */
+      /** Format preprocessing */
       () => this.prepare(),
-      /** 定位解密器 */
+      /** Location decryptor */
       () => {
         let stringArray: StringArray | undefined;
         let decoders: Decoder[] = [];
@@ -217,9 +217,9 @@ export class Deob {
           decoders.forEach((d) => d.path?.remove());
         }
       },
-      /** 对象引用替换 */
+      /** Object reference replacement */
       () => applyTransform(this.ast, inlineObjectProps),
-      /** 控制流平坦化 */
+      /** Control flow flattening */
       () => {
         for (let i = 0; i < options.execCount; i++) {
           applyTransforms(this.ast, [
@@ -231,22 +231,22 @@ export class Deob {
           this.reParse();
         }
       },
-      /** 合并对象 */
+      /** Merge objects */
       () => applyTransform(this.ast, mergeObjectAssignments),
       /** 去 minify */
       () => applyTransform(this.ast, unminify),
-      /** 对象命名优化 */
+      /** Object naming optimization */
       options.mangle && (() => applyTransform(this.ast, mangle)),
-      /** 移除自卫代码 */
+      /** Remove self-defense code */
       () => {
         return applyTransforms(
           this.ast,
           [[selfDefending, debugProtection]].flat(),
         );
       },
-      /** 标记关键字 */
+      /** Mark keywords */
       options.isMarkEnable && (() => markKeyword(this.ast, options.keywords)),
-      /** 输出代码 */
+      /** Output code */
       () => (outputCode = generate(this.ast)),
     ].filter(Boolean) as (() => unknown)[];
 
@@ -265,7 +265,7 @@ export class Deob {
           historys.push(parser.parse(jscode));
         } catch (error) {
           handleError(error, jscode);
-          throw new Error(`代码替换有误,解析失败! 请到控制台中查看 ${error}`);
+          throw new Error(`Code replacement error, parsing failed! Please check the console. ${error}`);
         }
       }
     }
