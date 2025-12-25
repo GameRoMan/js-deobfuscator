@@ -23,7 +23,7 @@ export function designDecoder(
     },
   });
 
-  // // 将所有引用解密函数的变量都重命名变为解密函数, 同时移除自身
+  // // Rename all variables that reference the decryption function to the decryption function name, and remove the variable itself.
   // traverse(ast, {
   //   VariableDeclarator(path) {
   //     const { id, init } = path.node

@@ -7,7 +7,7 @@ import { Decoder } from "../deobfuscate/decoder";
 import type { ArrayRotator } from "../deobfuscate/array-rotator";
 
 export function findDecoderByArray(ast: t.Node, count: number = 100) {
-  // 大数组 有可能是以函数形式包裹的
+  // Large arrays may be wrapped in functions.
   let stringArray:
     | {
         path: NodePath<t.Node>;
@@ -16,9 +16,7 @@ export function findDecoderByArray(ast: t.Node, count: number = 100) {
         length: number;
       }
     | undefined;
-  // 乱序函数
   const rotators: ArrayRotator[] = [];
-  // 解密器
   const decoders: Decoder[] = [];
 
   traverse(ast, {
@@ -44,7 +42,7 @@ export function findDecoderByArray(ast: t.Node, count: number = 100) {
             .name;
           stringArrayPath = stringArrayDeclaration.parentPath;
 
-          // 可能会被在包裹一层
+          // It may be wrapped in another layer
           const parent = stringArrayPath.findParent((p) =>
             p.isFunctionDeclaration(),
           );
@@ -80,7 +78,7 @@ export function findDecoderByArray(ast: t.Node, count: number = 100) {
           length: path.node.elements.length,
         };
 
-        // 通过引用 找到 数组乱序代码 与 解密函数代码
+        // The code for array reordering and the decryption function were found by referencing these methods.
         binding.referencePaths.forEach((r) => {
           if (r.parentKey === "callee") {
             const parent = r.find((p) => p.isFunctionDeclaration());

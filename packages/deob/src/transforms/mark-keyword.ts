@@ -7,7 +7,7 @@ export interface Options {
 }
 
 /**
- * 给关键函数、标识符 设置注释
+ * Add comments to key functions and identifiers
  * @example
  * debugger;
  * ⬇️

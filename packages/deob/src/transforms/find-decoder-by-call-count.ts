@@ -5,12 +5,12 @@ import { generate } from "../ast-utils";
 import { Decoder } from "../deobfuscate/decoder";
 
 /**
- * 根据解密器调用次数寻找到解密器
- * @param {number} count 解密函数调用次数
- * @returns {string} 解密器代码
+ * Find the decoder by the number of times it was called.
+ * @param {number} count Decoder function call count
+ * @returns {string} decoder code
  */
 export function findDecoderByCallCount(ast: t.File, count = 100) {
-  let index = 0; // 最后一个解密函数所在语句下标
+  let index = 0; // The index of the last decryption function statement
 
   const decoders: Decoder[] = [];
 
@@ -23,13 +23,13 @@ export function findDecoderByCallCount(ast: t.File, count = 100) {
 
         if (!binding) return;
 
-        // 引用次数
+        // Citation count
         if (binding.referencePaths.length >= count) {
           decoders.push(new Decoder(fnName, path));
 
           const body = (path.parentPath!.scope.block as t.Program).body;
 
-          // TODO: 根据解密器来找乱序函数与字符串数组
+          // TODO: Find the disorder function and string array using the decoder.
           for (let i = 0; i < body.length; i++) {
             const statement = body[i];
             if (statement.start === path.node.start) {
@@ -39,7 +39,7 @@ export function findDecoderByCallCount(ast: t.File, count = 100) {
         }
       }
     },
-    // 已执行 var-functions 则无需遍历 FunctionExpression
+    // If var-functions have already been executed, there is no need to iterate over FunctionExpression.
     // FunctionExpression(path) {
     //   if (path.parentKey === 'init' && path.parentPath.type === 'VariableDeclarator') {
     //     const variableDeclarationPath = path.findParent(p => p.isVariableDeclaration())
