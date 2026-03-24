@@ -1,5 +1,4 @@
 import type { Binding, NodePath } from "@babel/traverse";
-
 import traverse from "@babel/traverse";
 import * as t from "@babel/types";
 import * as m from "@codemod/matchers";

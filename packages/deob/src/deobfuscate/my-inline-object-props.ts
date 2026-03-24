@@ -3,9 +3,8 @@ import traverse from "@babel/traverse";
 // eslint-disable-next-line ts/ban-ts-comment
 import * as t from "@babel/types";
 
-import type { Objects } from "./save-objects";
-
 import { type Transform, getPropName } from "../ast-utils";
+import type { Objects } from "./save-objects";
 
 /**
  * To replace object properties, you need to first execute `saveAllObject` to save all variables.

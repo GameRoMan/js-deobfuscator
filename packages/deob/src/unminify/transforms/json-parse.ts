@@ -2,7 +2,6 @@ import { parseExpression } from "@babel/parser";
 import * as m from "@codemod/matchers";
 
 import type { Transform } from "../../ast-utils";
-
 import { constMemberExpression } from "../../ast-utils";
 
 export default {
@@ -27,7 +26,7 @@ export default {
               const parsed = parseExpression(string.current!);
               path.replaceWith(parsed);
               this.changes++;
-            } catch (error) {
+            } catch {
               // ignore
             }
           }
@@ -35,4 +34,4 @@ export default {
       },
     };
   },
-} satisfies Transform;
+} satisfies Transform as Transform;

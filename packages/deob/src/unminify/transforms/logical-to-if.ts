@@ -1,6 +1,5 @@
-import type * as t from "@babel/types";
-
 import { statement } from "@babel/template";
+import type * as t from "@babel/types";
 import * as m from "@codemod/matchers";
 
 import type { Transform } from "../../ast-utils";
@@ -42,4 +41,4 @@ export default {
       },
     };
   },
-} satisfies Transform;
+} satisfies Transform as Transform;

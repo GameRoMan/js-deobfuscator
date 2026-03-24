@@ -1,5 +1,4 @@
 import type { NodePath } from "@babel/traverse";
-
 import traverse from "@babel/traverse";
 import * as t from "@babel/types";
 
@@ -41,7 +40,7 @@ export function saveObjects(ast: t.Node) {
 
   traverse(ast, {
     VariableDeclaration: {
-      exit(path, state) {
+      exit(path) {
         path.node.declarations.forEach((declaration) => {
           if (declaration.id.type === "Identifier") {
             const objectName = declaration.id.name;
@@ -150,7 +149,7 @@ export function saveObjects(ast: t.Node) {
 
             isReplace = true;
           }
-        } catch (error) {
+        } catch {
           throw new Error("生成表达式失败");
         }
 

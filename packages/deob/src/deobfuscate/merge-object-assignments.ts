@@ -1,10 +1,8 @@
 import type { Binding } from "@babel/traverse";
-
 import * as t from "@babel/types";
 import * as m from "@codemod/matchers";
 
 import type { Transform } from "../ast-utils";
-
 import { constObjectProperty } from "../ast-utils";
 
 /**

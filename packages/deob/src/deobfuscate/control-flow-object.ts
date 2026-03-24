@@ -1,11 +1,9 @@
 import type { Binding, NodePath } from "@babel/traverse";
 import type { FunctionExpression } from "@babel/types";
-
 import * as t from "@babel/types";
 import * as m from "@codemod/matchers";
 
 import type { Transform } from "../ast-utils";
-
 import {
   applyTransform,
   constKey,

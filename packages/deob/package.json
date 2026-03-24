@@ -1,7 +1,9 @@
 {
   "name": "deob",
-  "version": "0.3.0",
-  "description": "javascript deobfuscate",
+  "version": "0.0.0",
+  "private": true,
+  "description": "javascript deobfuscator",
+  "license": "MIT",
   "bin": "dist/cli.js",
   "files": [
     "dist"
@@ -10,22 +12,19 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "bun esbuild.config.js && tsc -p tsconfig.build.json",
-    "watch": "bun esbuild.config.js --watch",
-    "start": "bun dist/cli.js",
+    "build": "tsdown",
     "test": "vitest --pool=vmThreads"
   },
   "dependencies": {
-    "@babel/code-frame": "^7.28.6",
-    "@babel/generator": "^7.28.6",
+    "@babel/code-frame": "^7.29.0",
+    "@babel/generator": "^7.29.1",
     "@babel/helper-validator-identifier": "^7.22.20",
-    "@babel/parser": "^7.28.6",
+    "@babel/parser": "^7.29.2",
     "@babel/template": "^7.28.6",
-    "@babel/traverse": "^7.28.6",
-    "@babel/types": "^7.28.6",
+    "@babel/traverse": "^7.29.0",
+    "@babel/types": "^7.29.0",
     "@codemod/matchers": "^1.7.1",
-    "babel-plugin-minify-mangle-names": "^0.5.1",
-    "debug": "^4.3.4"
+    "babel-plugin-minify-mangle-names": "^0.5.1"
   },
   "devDependencies": {
     "@types/babel__code-frame": "^7.27.0",
@@ -33,10 +32,8 @@
     "@types/babel__helper-validator-identifier": "^7.15.2",
     "@types/babel__template": "^7.4.4",
     "@types/babel__traverse": "^7.28.0",
-    "@types/debug": "^4.1.12",
-    "@types/node": "^25.0.10",
-    "esbuild": "^0.27.2",
-    "tsdown": "^0.20.1",
-    "typescript": "^5.9.3"
+    "@types/node": "^25.5.0",
+    "tsdown": "^0.21.4",
+    "typescript": "^6.0.2"
   }
 }

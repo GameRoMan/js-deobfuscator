@@ -1,14 +1,9 @@
-import type * as t from "@babel/types";
+import { join, normalize } from "node:path";
 
 import { codeFrameColumns } from "@babel/code-frame";
 import * as parser from "@babel/parser";
+import type * as t from "@babel/types";
 import debug from "debug";
-import { join, normalize } from "node:path";
-
-import type { ArrayRotator } from "./deobfuscate/array-rotator";
-import type { Decoder } from "./deobfuscate/decoder";
-import type { StringArray } from "./deobfuscate/string-array";
-import type { Options } from "./options";
 
 import {
   applyTransform,
@@ -16,15 +11,19 @@ import {
   codePrettier,
   generate,
 } from "./ast-utils";
+import type { ArrayRotator } from "./deobfuscate/array-rotator";
 import controlFlowObject from "./deobfuscate/control-flow-object";
 import controlFlowSwitch from "./deobfuscate/control-flow-switch";
 import deadCode from "./deobfuscate/dead-code";
 import debugProtection from "./deobfuscate/debug-protection";
+import type { Decoder } from "./deobfuscate/decoder";
 import inlineDecoderWrappers from "./deobfuscate/inline-decoder-wrappers";
 import inlineObjectProps from "./deobfuscate/inline-object-props";
 import mergeObjectAssignments from "./deobfuscate/merge-object-assignments";
 import selfDefending from "./deobfuscate/self-defending";
+import type { StringArray } from "./deobfuscate/string-array";
 import varFunctions from "./deobfuscate/var-functions";
+import type { Options } from "./options";
 import { defaultOptions, mergeOptions } from "./options";
 import { decodeStrings } from "./transforms/decode-strings";
 import { designDecoder } from "./transforms/design-decoder";
@@ -74,7 +73,7 @@ const logger = debug("Deob");
 export function evalCode(code: string) {
   try {
     global.eval(code);
-  } catch (error) {
+  } catch {
     logger(`eval code:\n${code}`);
     throw new Error(
       "The evalCode function failed to run. Please check the error message in the console.",
@@ -86,10 +85,7 @@ export class Deob {
   public ast: parser.ParseResult<t.File>;
   private options: Required<Options>;
 
-  constructor(
-    private rawCode: string,
-    options: Options = {},
-  ) {
+  constructor(rawCode: string, options: Options = {}) {
     mergeOptions(options);
     this.options = options;
 
@@ -256,7 +252,7 @@ export class Deob {
     ].filter(Boolean) as (() => unknown)[];
 
     for (let i = 0; i < stages.length; i++) {
-      stages[i]();
+      stages[i]!();
 
       if (options.isDebug) {
         const jscode = generate(this.ast, {

@@ -1,7 +1,6 @@
 import type { NodePath } from "@babel/traverse";
-import type * as t from "@babel/types";
-
 import traverse from "@babel/traverse";
+import type * as t from "@babel/types";
 import * as m from "@codemod/matchers";
 
 import {

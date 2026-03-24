@@ -1,7 +1,6 @@
+import { expression } from "@babel/template";
 import type { NodePath } from "@babel/traverse";
 import type * as t from "@babel/types";
-
-import { expression } from "@babel/template";
 
 import { type Transform, generate } from "../ast-utils";
 import { Decoder } from "./decoder";
@@ -62,9 +61,6 @@ export default {
             // The call was performed with the following parameters: -57, 1080, 828, 469.
             const callFn_args = ref.parentPath.node.arguments;
 
-            // The actual parameters used are _0x13ee81 - -674, _0x3dfa50
-            const realFn_args = realFn.node.arguments;
-
             // Template to be replaced
             let templateCode = generate(realFn.node);
 
@@ -116,4 +112,6 @@ export default {
       },
     };
   },
-} satisfies Transform<{ decoders: Decoder[] }>;
+} satisfies Transform<{ decoders: Decoder[] }> as Transform<{
+  decoders: Decoder[];
+}>;

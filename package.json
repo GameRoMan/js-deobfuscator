@@ -13,9 +13,10 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "oxfmt": "^0.26.0",
-    "oxlint": "^1.41.0",
-    "typescript": "^5.9.3",
-    "vitest": "^4.0.18"
+    "@gameroman/config": "^0.0.4",
+    "oxfmt": "^0.42.0",
+    "oxlint": "^1.57.0",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.1"
   }
 }

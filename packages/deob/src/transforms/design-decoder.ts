@@ -1,6 +1,5 @@
-import type * as t from "@babel/types";
-
 import traverse from "@babel/traverse";
+import type * as t from "@babel/types";
 
 import { Decoder } from "../deobfuscate/decoder";
 

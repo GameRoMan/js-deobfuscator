@@ -1,5 +1,4 @@
 import type { Node, TraverseOptions, Visitor } from "@babel/traverse";
-
 import traverse, { visitors } from "@babel/traverse";
 import debug from "debug";
 
